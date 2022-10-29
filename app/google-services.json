@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "658420484915",
+    "project_id": "baecallingapp",
+    "storage_bucket": "baecallingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658420484915:android:963a80786368c825568c46",
+        "android_client_info": {
+          "package_name": "com.harry.baecallingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658420484915-23p91taf5u9ofru3ksmd8ssb18v8fc99.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtuhlxh9QH-CwULPX3Z4tnhflcCAQR54Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658420484915-23p91taf5u9ofru3ksmd8ssb18v8fc99.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
