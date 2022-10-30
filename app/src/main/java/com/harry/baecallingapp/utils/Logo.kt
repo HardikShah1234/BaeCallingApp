@@ -1,24 +1,30 @@
 package com.harry.baecallingapp.utils
 
 import android.graphics.Paint
+import android.graphics.Typeface
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.harry.baecallingapp.R
 import com.harry.baecallingapp.ui.theme.BaeCallingAppTheme
+
+private lateinit var customTypeFace: Typeface
 
 @Composable
 fun Logo(modifier: Modifier = Modifier) {
 
     val gradient = Brush.verticalGradient(
         colors = listOf(
-            Color.Gray,
-            Color.DarkGray
+            Color(0xFF0A1478),
+            Color(0xFFBEC8FF)
         )
     )
+    val context = LocalContext.current
 
     Canvas(
         modifier = modifier
@@ -30,6 +36,7 @@ fun Logo(modifier: Modifier = Modifier) {
             moveTo(x = padding.toFloat() * 6, y = center.y)
             lineTo(x = size.width - padding * 6, y = center.y)
         }
+        customTypeFace = context.resources.getFont(R.font.marckscript_regular)
 
         /**
          * For drawing the text we dont have the such method called [drawText].
@@ -44,8 +51,9 @@ fun Logo(modifier: Modifier = Modifier) {
                 0f,
                 Paint().apply {
                     this.color = android.graphics.Color.WHITE
-                    this.textSize = 100f
+                    this.textSize = 120f
                     this.textAlign = Paint.Align.CENTER
+                    this.typeface = customTypeFace
                 }
             )
         }
