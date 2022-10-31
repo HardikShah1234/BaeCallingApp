@@ -1,4 +1,4 @@
-package com.harry.baecallingapp.ui
+package com.harry.baecallingapp.views
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,14 +16,6 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
-
-    LaunchedEffect(key1 = true) {
-        delay(2000)
-        navController.navigate(Screens.LoginScreen.route) {
-            popUpTo(0)
-        }
-    }
-
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Logo()
     }
