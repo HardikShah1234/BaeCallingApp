@@ -7,6 +7,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.harry.baecallingapp.utils.Logo
+import com.harry.baecallingapp.views.SplashScreen
+import com.harry.baecallingapp.views.home.HomeScreen
 import com.harry.baecallingapp.views.home.LoginScreen
 import com.harry.baecallingapp.views.onboarding.WelcomeScreen
 
@@ -23,6 +26,10 @@ fun setUpNavController(
         startDestination = startDestination
     ) {
 
+        composable(Screens.SplashScreen.route) {
+            SplashScreen(navController = controller)
+        }
+
         composable(Screens.WelcomeScreen.route) {
             /**
              * Show Welcome Screen
@@ -32,9 +39,13 @@ fun setUpNavController(
 
         composable(Screens.LoginScreen.route) {
             /**
-             * Show Home Screen
+             * Show Login Screen
              */
-            LoginScreen()
+            LoginScreen(navController = controller)
+        }
+
+        composable(Screens.HomeScreen.route) {
+            HomeScreen(navController = controller)
         }
     }
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Bae Calling App</string>
+
+<!--   Login -->
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
 </resources>

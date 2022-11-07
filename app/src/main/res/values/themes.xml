@@ -9,5 +9,6 @@
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="windowSplashScreenAnimationDuration">600</item>
         <item name="postSplashScreenTheme">@style/Theme.BaeCallingApp</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_chat_bubble_icon</item>
     </style>
 </resources>

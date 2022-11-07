@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.harry.baecallingapp.R
 import com.harry.baecallingapp.ui.theme.BaeCallingAppTheme
+import com.harry.baecallingapp.ui.theme.CustomBaeCallingAppTheme
 
 private lateinit var customTypeFace: Typeface
 
@@ -63,7 +64,7 @@ fun Logo(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun LogoPreview() {
-    BaeCallingAppTheme {
+    CustomBaeCallingAppTheme {
         Logo()
     }
 }

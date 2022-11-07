@@ -16,6 +16,10 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavController) {
+
+    LaunchedEffect(key1 = true) {
+        delay(3000)
+    }
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Logo()
     }
