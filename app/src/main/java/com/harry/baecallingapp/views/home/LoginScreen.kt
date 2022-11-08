@@ -1,16 +1,16 @@
 package com.harry.baecallingapp.views.home
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.VerticalAlignmentLine
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -19,17 +19,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.harry.baecallingapp.R
+import com.harry.baecallingapp.data.Resource
+import com.harry.baecallingapp.navigation.Screens
 import com.harry.baecallingapp.ui.theme.BaeCallingAppTheme
 import com.harry.baecallingapp.utils.AppHeader
-import com.harry.baecallingapp.R
-import com.harry.baecallingapp.navigation.Screens
 import com.harry.baecallingapp.utils.PrimaryButton
-import org.intellij.lang.annotations.JdkConstants
+import com.harry.baecallingapp.viewModel.AuthViewModel
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(
+    navController: NavController,
+    viewModel: AuthViewModel?
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    val loginFlow = viewModel?.loginFlow?.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -85,7 +91,26 @@ fun LoginScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(horizontal = 55.dp)
         ) {
-            navController.navigate(Screens.HomeScreen.route)
+            viewModel?.login(email, password)
+        }
+
+        loginFlow?.value?.let {
+            when (it) {
+                is Resource.Failure -> {
+                    val context = LocalContext.current
+                    Toast.makeText(context, it.exception.message, Toast.LENGTH_SHORT).show()
+                }
+                Resource.Loading -> {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                }
+                is Resource.Success -> {
+                    LaunchedEffect(Unit) {
+                        navController.navigate(Screens.HomeScreen.route) {
+                            popUpTo(Screens.HomeScreen.route) { inclusive = true }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -94,6 +119,6 @@ fun LoginScreen(navController: NavController) {
 @Composable
 fun LoginScreenPreview() {
     BaeCallingAppTheme {
-        LoginScreen(rememberNavController())
+        LoginScreen(rememberNavController(), null)
     }
 }
