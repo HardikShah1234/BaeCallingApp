@@ -5,8 +5,16 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="login">login</string>
+    <string name="signup">sign up</string>
     <string name="welcome_back">Welcome Back</string>
     <string name="name">name</string>
     <string name="empty" />
     <string name="logout">logout</string>
+    <string name="do_not_have_account">Do not have account? click here</string>
+    <string name="create_account">Let\'s Create Account</string>
+    <string name="submit">submit</string>
+    <string name="verify_otp">verify Otp</string>
+    <string name="verification_failed">verification failed</string>
+    <string name="requests_exceeded">request exceeded</string>
+
 </resources>

@@ -1,6 +1,9 @@
 package com.harry.baecallingapp.data
 
+import android.app.Activity
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.flow.Flow
+
 
 interface AuthRepository {
     /**
@@ -22,4 +25,14 @@ interface AuthRepository {
      * Logout from the app.
      */
     fun logout()
+
+    /**
+     * Successfully create User with phone.
+     */
+    fun createUserWithPhone(phone: String, activity: Activity) : Flow<Resource<String>>
+
+    /**
+     * Successfully signin with credentials (phone).
+     */
+    fun signInWithPhone(otp: String) : Flow<Resource<String>>
 }

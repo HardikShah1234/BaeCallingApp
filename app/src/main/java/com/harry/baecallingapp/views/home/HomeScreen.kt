@@ -12,17 +12,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.harry.baecallingapp.R
+import com.harry.baecallingapp.navigation.Screens
 import com.harry.baecallingapp.ui.theme.CustomBaeCallingAppTheme
 import com.harry.baecallingapp.ui.theme.CustomTheme
 import com.harry.baecallingapp.ui.theme.spacing
 import com.harry.baecallingapp.utils.PrimaryButton
 import com.harry.baecallingapp.utils.VerticalSpacer
+import com.harry.baecallingapp.viewModel.AuthViewModel
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(
+    viewModel: AuthViewModel? = hiltViewModel(),
+    navController: NavController
+) {
     val spacing = MaterialTheme.spacing
     Column(
         modifier = Modifier
@@ -38,7 +44,7 @@ fun HomeScreen(navController: NavController) {
         )
 
         Text(
-            text = stringResource(id = R.string.name),
+            text = viewModel?.currentUser?.displayName ?: "",
             style = CustomTheme.typography.body1
         )
 
@@ -66,7 +72,7 @@ fun HomeScreen(navController: NavController) {
                 )
 
                 Text(
-                    text = "Hardik Shah",
+                    text = viewModel?.currentUser?.displayName ?: "",
                     style = CustomTheme.typography.body1,
                     modifier = Modifier.weight(0.7f),
                 )
@@ -85,7 +91,7 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier.weight(0.3f),
                 )
                 Text(
-                    text = "hardik.shah031991@gmai.com",
+                    text = viewModel?.currentUser?.email ?: "",
                     style = MaterialTheme.typography.body1,
                     modifier = Modifier.weight(0.7f),
                 )
@@ -100,7 +106,10 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxSize()
                     .padding(horizontal = 55.dp)
             ) {
-                
+                viewModel?.logout()
+                navController.navigate(Screens.PhoneAuthScreen.route){
+                    popUpTo(Screens.HomeScreen.route){ inclusive = true }
+                }
             }
         }
     }
@@ -110,6 +119,6 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun HomeScreenPreviewLight() {
     CustomBaeCallingAppTheme {
-        HomeScreen(rememberNavController())
+        HomeScreen(null,rememberNavController())
     }
 }

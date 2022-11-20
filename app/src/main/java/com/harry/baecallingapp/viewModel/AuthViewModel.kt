@@ -1,5 +1,6 @@
 package com.harry.baecallingapp.viewModel
 
+import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
@@ -43,6 +44,13 @@ class AuthViewModel @Inject constructor(
         val result = repository.signUp(name, email, password)
         _signUpFlow.update { result }
     }
+
+    fun createUserWithPhone(phone: String, activity: Activity) =
+        repository.createUserWithPhone(phone, activity)
+
+    fun signInWithCredential(code:String) =
+        repository.signInWithPhone(otp = code)
+
 
     fun logout() {
         repository.logout()

@@ -97,7 +97,7 @@ internal val baeColorsDark = baeColorsUninitialized.copy(
 )
 
 internal val baeColorsCallLight = baeColorsLight.copy(
-    brand = Color(0xFFFFCC00),
+    brand = Color(0xFF00D9FF),
     brandTransparent = Color(0x1AFFCC00),
     customHeader = Color(0xFFFFCC00),
     typeLabelPrimary = Color(0xFF191919),
@@ -109,7 +109,7 @@ internal val baeColorsCallLight = baeColorsLight.copy(
 )
 
 internal val baeColorsCallDark = baeColorsDark.copy(
-    brand = Color(0xFFFFCC00),
+    brand = Color(0xFF00D9FF),
     brandTransparent = Color(0x1AFFCC00),
     customHeader = Color(0xFF262626),
     typeLabelPrimary = Color(0xFF191919),

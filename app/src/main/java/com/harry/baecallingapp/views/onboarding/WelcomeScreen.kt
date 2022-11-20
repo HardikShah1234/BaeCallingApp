@@ -58,7 +58,7 @@ fun WelcomeScreen(
             welcomeViewModel.saveOnBoardingState(true)
             navController.popBackStack()
             navController.navigate(
-                Screens.LoginScreen.route
+                Screens.PhoneAuthScreen.route
             )
         }
     }
