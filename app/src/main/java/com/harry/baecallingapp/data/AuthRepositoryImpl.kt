@@ -80,7 +80,7 @@ class AuthRepositoryImpl @Inject constructor(
                 }
 
             val options = PhoneAuthOptions.newBuilder(firebaseAuth)
-                .setPhoneNumber("+49$phone")
+                .setPhoneNumber(phone)
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setActivity(activity)
                 .setCallbacks(onVerificationCallback)
