@@ -1,6 +1,7 @@
 package com.harry.baecallingapp.views.home
 
 import android.app.Activity
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
@@ -41,11 +42,7 @@ fun PhoneAuthScreen(
     var otp by remember { mutableStateOf("") }
     val fullPhoneNumber = rememberSaveable { mutableStateOf("") }
     val onlyPhoneNumber = rememberSaveable { mutableStateOf("") }
-
-
-    if (isDailog) {
-        CircularProgressIndicator()
-    }
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -56,6 +53,11 @@ fun PhoneAuthScreen(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            if (isDailog) {
+                CircularProgressIndicator()
+            }
+
             Text(text = "Enter Mobile Number")
             VerticalSpacer(height = 20.dp)
 
@@ -83,7 +85,7 @@ fun PhoneAuthScreen(
                     fullPhoneNumber.value = getFullPhoneNumber()
                     scope.launch(Dispatchers.Main) {
                         viewModel?.createUserWithPhone(
-                            mobile,
+                            fullPhoneNumber.value,
                             activity
                         )?.collect {
                             when (it) {
@@ -126,23 +128,27 @@ fun PhoneAuthScreen(
                     .fillMaxSize()
                     .padding(horizontal = 55.dp)
             ) {
-                scope.launch(Dispatchers.Main) {
-                    viewModel?.signInWithCredential(
-                        otp
-                    )?.collect {
-                        when (it) {
-                            is Resource.Loading -> {
-                                isDailog = false
-                            }
-                            is Resource.Failure -> {
-                                isDailog = false
-                                activity.showMsg(it.exception.message.toString())
-                            }
-                            is Resource.Success -> {
-                                isDailog = true
-                                activity.showMsg(it.result)
-                                navController.navigate(Screens.HomeScreen.route) {
-                                    popUpTo(Screens.HomeScreen.route) { inclusive = true }
+                if (otp.isEmpty() || otp.length < 6) {
+                    Toast.makeText(context,"Please enter valid otp",Toast.LENGTH_SHORT).show()
+                } else {
+                    scope.launch(Dispatchers.Main) {
+                        viewModel?.signInWithCredential(
+                            otp
+                        )?.collect {
+                            when (it) {
+                                is Resource.Loading -> {
+                                    isDailog = false
+                                }
+                                is Resource.Failure -> {
+                                    isDailog = false
+                                    activity.showMsg(it.exception.message.toString())
+                                }
+                                is Resource.Success -> {
+                                    isDailog = true
+                                    activity.showMsg(it.result)
+                                    navController.navigate(Screens.HomeScreen.route) {
+                                        popUpTo(Screens.HomeScreen.route) { inclusive = true }
+                                    }
                                 }
                             }
                         }
@@ -151,7 +157,6 @@ fun PhoneAuthScreen(
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)
