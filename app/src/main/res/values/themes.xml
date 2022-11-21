@@ -4,4 +4,11 @@
     <style name="Theme.BaeCallingApp" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
+
+    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimationDuration">600</item>
+        <item name="postSplashScreenTheme">@style/Theme.BaeCallingApp</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_chat_bubble_icon</item>
+    </style>
 </resources>

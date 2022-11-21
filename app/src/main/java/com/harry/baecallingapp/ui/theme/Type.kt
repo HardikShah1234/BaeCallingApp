@@ -15,7 +15,7 @@ val BaeSplashFont = FontFamily(
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = regularBaeFont,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),

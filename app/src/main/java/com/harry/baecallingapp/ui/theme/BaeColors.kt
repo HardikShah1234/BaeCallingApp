@@ -16,12 +16,30 @@ data class BaeColors(
     val iconPrimary: Color,
     val iconSecondary: Color,
 
+    /*
+     * Branded
+     */
+    val brand: Color,
+    val brandTransparent: Color,
+    val customHeader: Color,
+    val typeLabel: Color,
+    val typeLabelPrimary: Color,
+    val typeLabelSecondary: Color,
+    val typeHeader: Color,
+    val iconOnBackground: Color,
+    val iconHeader: Color,
+    val ripple: Color,
+
     val undefined: Color,
 
     val isLight: Boolean
 )
 
-private val undefined = Color.Transparent
+private val undefined = if (BuildConfig.DEBUG) {
+    Color.Transparent
+} else {
+    Color.Transparent
+}
 
 internal val baeColorsUninitialized = BaeColors(
     greyscalePrimary = undefined,
@@ -33,6 +51,17 @@ internal val baeColorsUninitialized = BaeColors(
     customWhite = undefined,
     iconPrimary = undefined,
     iconSecondary = undefined,
+
+    brand = undefined,
+    brandTransparent = undefined,
+    customHeader = undefined,
+    typeLabel = undefined,
+    typeLabelPrimary = undefined,
+    typeLabelSecondary = undefined,
+    typeHeader = undefined,
+    iconOnBackground = undefined,
+    iconHeader = undefined,
+    ripple = undefined,
 
     undefined = undefined,
 
@@ -65,4 +94,28 @@ internal val baeColorsDark = baeColorsUninitialized.copy(
     iconSecondary = Color(0xFFB1B1B1),
 
     isLight = false
+)
+
+internal val baeColorsCallLight = baeColorsLight.copy(
+    brand = Color(0xFF00D9FF),
+    brandTransparent = Color(0x1AFFCC00),
+    customHeader = Color(0xFFFFCC00),
+    typeLabelPrimary = Color(0xFF191919),
+    typeLabelSecondary = Color(0xFF191919),
+    typeHeader = Color(0xFF191919),
+    iconOnBackground = Color(0xFF191919),
+    iconHeader = Color(0xFF191919),
+    ripple = Color(0xFFFFFFFF)
+)
+
+internal val baeColorsCallDark = baeColorsDark.copy(
+    brand = Color(0xFF00D9FF),
+    brandTransparent = Color(0x1AFFCC00),
+    customHeader = Color(0xFF262626),
+    typeLabelPrimary = Color(0xFF191919),
+    typeLabelSecondary = Color(0xFFEBEBEB),
+    typeHeader = Color(0xFFEBEBEB),
+    iconOnBackground = Color(0xFF191919),
+    iconHeader = Color(0xFFEBEBEB),
+    ripple = Color(0xFF000000)
 )
