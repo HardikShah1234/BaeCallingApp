@@ -1,9 +1,6 @@
 package com.harry.baecallingapp.viewModel
 
 import android.app.Activity
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
@@ -51,7 +48,7 @@ class AuthViewModel @Inject constructor(
     fun createUserWithPhone(phone: String, activity: Activity) =
         repository.createUserWithPhone(phone, activity)
 
-    fun signInWithCredential(code:String) =
+    fun signInWithCredential(code: String) =
         repository.signInWithPhone(otp = code)
 
 

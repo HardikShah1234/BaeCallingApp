@@ -62,13 +62,13 @@ fun PrimaryButton(
     }
 }
 
-private data class BasePrimaryButtonRippleTheme(val rippleColor: Color): RippleTheme {
+private data class BasePrimaryButtonRippleTheme(val rippleColor: Color) : RippleTheme {
 
     @Composable
     override fun defaultColor() = rippleColor
 
     @Composable
-    override fun rippleAlpha() = RippleAlpha(0.26f, 0.26f,0.26f,0.26f)
+    override fun rippleAlpha() = RippleAlpha(0.26f, 0.26f, 0.26f, 0.26f)
 }
 
 @Preview(showBackground = true)

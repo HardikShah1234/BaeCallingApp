@@ -25,7 +25,6 @@ import androidx.navigation.compose.rememberNavController
 import com.harry.baecallingapp.R
 import com.harry.baecallingapp.data.Resource
 import com.harry.baecallingapp.navigation.Screens
-import com.harry.baecallingapp.ui.theme.BaeCallingAppTheme
 import com.harry.baecallingapp.ui.theme.CustomBaeCallingAppTheme
 import com.harry.baecallingapp.utils.AppHeader
 import com.harry.baecallingapp.utils.PrimaryButton
@@ -48,7 +47,9 @@ fun SignupScreen(viewModel: AuthViewModel? = hiltViewModel(), navController: Nav
 
         Text(
             text = stringResource(id = R.string.create_account),
-            modifier = Modifier.align(CenterHorizontally).padding(top = 15.dp, bottom = 15.dp),
+            modifier = Modifier
+                .align(CenterHorizontally)
+                .padding(top = 15.dp, bottom = 15.dp),
             style = MaterialTheme.typography.h4
         )
 
@@ -146,6 +147,6 @@ fun SignupScreen(viewModel: AuthViewModel? = hiltViewModel(), navController: Nav
 @Composable
 fun SignupScreenPreview() {
     CustomBaeCallingAppTheme {
-        SignupScreen(null,rememberNavController())
+        SignupScreen(null, rememberNavController())
     }
 }

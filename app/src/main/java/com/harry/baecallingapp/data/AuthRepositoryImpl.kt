@@ -2,18 +2,15 @@ package com.harry.baecallingapp.data
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.harry.baecallingapp.utils.firebase.await
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-import com.harry.baecallingapp.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
@@ -57,36 +54,40 @@ class AuthRepositoryImpl @Inject constructor(
         firebaseAuth.signOut()
     }
 
-    override fun createUserWithPhone(phone: String, activity: Activity): Flow<Resource<String>> = callbackFlow {
-        trySend(Resource.Loading)
+    override fun createUserWithPhone(phone: String, activity: Activity): Flow<Resource<String>> =
+        callbackFlow {
+            trySend(Resource.Loading)
 
-        val onVerificationCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                TODO("Not yet implemented")
-            }
+            val onVerificationCallback =
+                object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                        TODO("Not yet implemented")
+                    }
 
-            override fun onVerificationFailed(p0: FirebaseException) {
-                trySend(Resource.Failure(p0))
-            }
+                    override fun onVerificationFailed(p0: FirebaseException) {
+                        trySend(Resource.Failure(p0))
+                    }
 
-            override fun onCodeSent(verificationCode: String, p1: PhoneAuthProvider.ForceResendingToken) {
-                super.onCodeSent(verificationCode, p1)
-                trySend(Resource.Success("OTP send successfully"))
-                mVerificationCode = verificationCode
-            }
+                    override fun onCodeSent(
+                        verificationCode: String,
+                        p1: PhoneAuthProvider.ForceResendingToken
+                    ) {
+                        super.onCodeSent(verificationCode, p1)
+                        trySend(Resource.Success("OTP send successfully"))
+                        mVerificationCode = verificationCode
+                    }
 
+                }
+
+            val options = PhoneAuthOptions.newBuilder(firebaseAuth)
+                .setPhoneNumber("+49$phone")
+                .setTimeout(60L, TimeUnit.SECONDS)
+                .setActivity(activity)
+                .setCallbacks(onVerificationCallback)
+                .build()
+            PhoneAuthProvider.verifyPhoneNumber(options)
+            awaitClose { close() }
         }
-
-        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
-            .setPhoneNumber("+49$phone")
-            .setTimeout(60L,TimeUnit.SECONDS)
-            .setActivity(activity)
-            .setCallbacks(onVerificationCallback)
-            .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)
-        awaitClose { close() }
-    }
-
 
 
     override fun signInWithPhone(otp: String): Flow<Resource<String>> = callbackFlow {
@@ -94,7 +95,7 @@ class AuthRepositoryImpl @Inject constructor(
         val credentials = PhoneAuthProvider.getCredential(mVerificationCode, otp)
         firebaseAuth.signInWithCredential(credentials)
             .addOnCompleteListener {
-                if (it.isSuccessful){
+                if (it.isSuccessful) {
                     trySend(Resource.Success("otp verified"))
                 }
             }.addOnFailureListener {

@@ -1,7 +1,5 @@
 package com.harry.baecallingapp.utils.ccp
 
-import java.util.*
-import android.telephony.TelephonyManager
 import com.harry.baecallingapp.R
 
 fun getFlags(countryName: String): Int {

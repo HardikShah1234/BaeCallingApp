@@ -22,7 +22,7 @@ fun BaseTheme(
     }
 
     DebugMaterialTheme {
-        CompositionLocalProvider (
+        CompositionLocalProvider(
             LocalColors provides rememberedColors,
             LocalTypography provides rememberedTypography,
             content = content
@@ -47,7 +47,7 @@ fun CustomBaeCallingAppTheme(
 }
 
 @Composable
-private fun baeColorsTheme(darkTheme: Boolean = isSystemInDarkTheme()) : BaeColors {
+private fun baeColorsTheme(darkTheme: Boolean = isSystemInDarkTheme()): BaeColors {
     return if (darkTheme) {
         baeColorsCallDark
     } else {
@@ -64,7 +64,7 @@ private fun DebugMaterialTheme(content: @Composable () -> Unit) {
             secondary = undefined,
             secondaryVariant = undefined,
             background = undefined,
-            surface= undefined,
+            surface = undefined,
             error = undefined,
             onPrimary = undefined,
             onSecondary = undefined,

@@ -29,6 +29,6 @@ fun Context.findActivity(): Activity? = when (this) {
 }
 
 fun Context.showMsg(
-    msg:String,
-    duration:Int = Toast.LENGTH_SHORT
-) = Toast.makeText(this,msg,duration).show()
+    msg: String,
+    duration: Int = Toast.LENGTH_SHORT
+) = Toast.makeText(this, msg, duration).show()

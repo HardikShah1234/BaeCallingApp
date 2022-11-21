@@ -1,21 +1,17 @@
 package com.harry.baecallingapp.views.home
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -62,24 +58,6 @@ fun PhoneAuthScreen(
         ) {
             Text(text = "Enter Mobile Number")
             VerticalSpacer(height = 20.dp)
-/*            OutlinedTextField(
-                value = mobile,
-                onValueChange = {
-                    mobile = it
-                },
-                label = {
-                    Text(text = "+49")
-                },
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(horizontal = 55.dp),
-                keyboardOptions = KeyboardOptions(
-                    capitalization = KeyboardCapitalization.None,
-                    autoCorrect = false,
-                    keyboardType = KeyboardType.Phone,
-                    imeAction = ImeAction.Next
-                )
-            )*/
 
             CustomCountryCodePicker(
                 text = mobile,
@@ -124,13 +102,13 @@ fun PhoneAuthScreen(
                         }
                     }
                 } else {
-                    fullPhoneNumber.value = "Error"
+                    fullPhoneNumber.value = activity.getString(R.string.error)
                 }
             }
 
             VerticalSpacer(height = 20.dp)
 
-            Text(text = "Enter Otp")
+            Text(text = stringResource(id = R.string.enter_otp))
 
             VerticalSpacer(height = 20.dp)
 
@@ -181,6 +159,6 @@ fun PhoneAuthScreen(
 fun PhoneAuthScreenPreview() {
     BaeCallingAppTheme {
         LocalContext.current.findActivity()
-            ?.let { PhoneAuthScreen(rememberNavController(), it,null) }
+            ?.let { PhoneAuthScreen(rememberNavController(), it, null) }
     }
 }

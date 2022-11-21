@@ -9,10 +9,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.harry.baecallingapp.navigation.setUpNavController
-import com.harry.baecallingapp.ui.theme.BaeCallingAppTheme
 import com.harry.baecallingapp.ui.theme.CustomBaeCallingAppTheme
 import com.harry.baecallingapp.viewModel.SplashViewModel
-import com.harry.baecallingapp.views.SplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

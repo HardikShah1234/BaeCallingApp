@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Bae Calling App</string>
 
-<!--   Login -->
+    <!--   Login -->
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="login">login</string>
@@ -16,6 +16,8 @@
     <string name="verify_otp">verify Otp</string>
     <string name="verification_failed">verification failed</string>
     <string name="requests_exceeded">request exceeded</string>
+    <string name="enter_otp">Enter Otp</string>
+    <string name="error">Error</string>
 
     <!--   Country Names -->
 

@@ -29,10 +29,10 @@ interface AuthRepository {
     /**
      * Successfully create User with phone.
      */
-    fun createUserWithPhone(phone: String, activity: Activity) : Flow<Resource<String>>
+    fun createUserWithPhone(phone: String, activity: Activity): Flow<Resource<String>>
 
     /**
      * Successfully signin with credentials (phone).
      */
-    fun signInWithPhone(otp: String) : Flow<Resource<String>>
+    fun signInWithPhone(otp: String): Flow<Resource<String>>
 }

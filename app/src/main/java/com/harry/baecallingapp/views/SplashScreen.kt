@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.harry.baecallingapp.navigation.Screens
 import com.harry.baecallingapp.ui.theme.BaeCallingAppTheme
 import com.harry.baecallingapp.utils.Logo
 import kotlinx.coroutines.delay

@@ -107,8 +107,8 @@ fun HomeScreen(
                     .padding(horizontal = 55.dp)
             ) {
                 viewModel?.logout()
-                navController.navigate(Screens.PhoneAuthScreen.route){
-                    popUpTo(Screens.HomeScreen.route){ inclusive = true }
+                navController.navigate(Screens.PhoneAuthScreen.route) {
+                    popUpTo(Screens.HomeScreen.route) { inclusive = true }
                 }
             }
         }
@@ -119,6 +119,6 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreviewLight() {
     CustomBaeCallingAppTheme {
-        HomeScreen(null,rememberNavController())
+        HomeScreen(null, rememberNavController())
     }
 }
